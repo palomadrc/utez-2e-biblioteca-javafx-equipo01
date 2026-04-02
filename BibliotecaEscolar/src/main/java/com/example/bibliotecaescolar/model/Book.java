@@ -35,9 +35,28 @@ public class Book {
     public StringProperty authorProperty() {return author;}
     public void setAuthor(String author){this.author.set(author);}
 
-
     public String getAnio() {return anio.get();}
     public StringProperty anioProperty() {return anio;}
     public void setAnio(String anio){this.anio.set(anio);}
 
+    public String getTitle() {return title.get();}
+    public StringProperty titleProperty() {return title;}
+    public void setTitle(String title){this.title.set(title);}
+
+    public String getEditorial() { return editorial.get(); }
+    public void setEditorial(String editorial) { this.editorial.set(editorial); }
+    public StringProperty editorialProperty() { return editorial; }
+
+    public String getAvailable() { return available.get(); }
+    public void setAvailable(String available) { this.available.set(available); }
+    public StringProperty availableProperty() { return available; }
+
+    public String getGender() { return gender.get(); }
+    public void setGender(String gender) { this.gender.set(gender); }
+    public StringProperty genderProperty() { return gender; }
+
+
+
 }
+
+
