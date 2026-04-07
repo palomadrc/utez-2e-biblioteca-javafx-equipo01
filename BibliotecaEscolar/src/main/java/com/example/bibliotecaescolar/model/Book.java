@@ -4,6 +4,7 @@ import javafx.beans.property.*;
 
 public class Book {
 
+    private static int nextId=0;
     private final IntegerProperty id;
     private final StringProperty ISBN;
     private final StringProperty author;
@@ -13,8 +14,10 @@ public class Book {
     private final StringProperty available;
     private final StringProperty gender;
 
-    public Book(int id,String ISBN,String author,String anio,String title,String editorial,String available,String gender) {
-        this.id = new SimpleIntegerProperty(id);
+
+
+    public Book(String ISBN,String author,String anio,String title,String editorial,String available,String gender) {
+        this.id = new SimpleIntegerProperty(nextId++);
         this.ISBN =new SimpleStringProperty(ISBN);
         this.author =new SimpleStringProperty(author);
         this.anio =new SimpleStringProperty(anio);

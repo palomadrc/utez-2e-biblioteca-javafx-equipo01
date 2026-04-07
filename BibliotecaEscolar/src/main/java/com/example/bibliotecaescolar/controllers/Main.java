@@ -1,11 +1,15 @@
 package com.example.bibliotecaescolar.controllers;
 
+import com.example.bibliotecaescolar.HelloApplication;
 import com.example.bibliotecaescolar.model.Book;
 import com.example.bibliotecaescolar.repository.BookRepo;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Main {
 
@@ -21,6 +25,7 @@ public class Main {
 
 
     private BookRepo repo = new BookRepo();
+    private Form form= new Form();
 
     @FXML
     private void initialize(){
@@ -29,7 +34,18 @@ public class Main {
 
     @FXML //Para ir al form
     private void goToForm(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/bibliotecaescolar/views/form-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
 
+            Stage stage = (Stage) TableView.getScene().getWindow();
+
+            stage.setTitle("Formulario");
+            stage.setScene(scene);
+            stage.show();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
