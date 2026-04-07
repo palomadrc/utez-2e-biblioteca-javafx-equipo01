@@ -3,10 +3,15 @@ package com.example.bibliotecaescolar.controllers;
 import com.example.bibliotecaescolar.repository.BookRepo;
 import com.example.bibliotecaescolar.model.Book;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -30,7 +35,7 @@ public class Form {
     }
 
     @FXML //guardar el libro y tambien editar (las dos validaciones)
-    private void Save(){
+    private void Save()throws IOException {
        if (!validate()) return;
 
        List<String> data = Stream.of(txtISBN,txtAuthor,txtYear,txtTitle,txtEditorial).map(f ->f.getText().trim()).toList();
@@ -39,24 +44,33 @@ public class Form {
 
        Book book = new Book(data.get(0),data.get(1),data.get(2),data.get(3),data.get(4),available,gender);
 
-       repo.
+       repo.appendLine(book.toCsvLine());
+       clear();
+
     }
 
     private boolean validate(){
         try {
-            boolean fieldVoid = List.of(txtTitle, txtAuthor, txtEditorial).stream().anyMatch(f -> f.getText().trim().isEmpty());
+            boolean fieldVoid = List.of(txtTitle, txtAuthor, txtEditorial,txtYear,txtISBN).stream().anyMatch(f -> f.getText().trim().isEmpty());
 
-            boolean comboGendervoid = List.of(comboGender, comboAvailable).stream().anyMatch(c -> c.getSelectionModel().getSelectedItem().trim().isEmpty());
+            boolean comboGendervoid = List.of(comboGender, comboAvailable).stream().anyMatch(c -> c.getValue()== null || c.getValue().trim().isEmpty());
 
-            int yearInt=Integer.parseInt(txtYear.getText());
-            boolean yearCorrect = yearInt>=1500;
+            int yearInt;
+            try {
+                yearInt = Integer.parseInt(txtYear.getText());
+            }catch (NumberFormatException e ){
+                throw new IllegalArgumentException("campo de año no numerico");
+            }
 
-            boolean aTCorrect = txtTitle.getText().length() >= 3 && txtAuthor.getText().length() >= 3;
+            boolean authorTitleCorrect = txtTitle.getText().length() >= 3 && txtAuthor.getText().length() >= 3;
             if (fieldVoid || comboGendervoid) {
                 throw new IllegalArgumentException("Campos vacios");
             }
-            if (!yearCorrect || aTCorrect) {
+            if (!authorTitleCorrect) {
                 throw new IllegalArgumentException("parametros fuera de rango");
+            }
+            if(yearInt<=1500){
+                throw new IllegalArgumentException("parametro de año fuera de rango");
             }
             return true;
         }catch (IllegalArgumentException e){
@@ -73,9 +87,24 @@ public class Form {
         alert.showAndWait();
     }
 
+    public void clear(){
+        txtTitle.clear();
+        txtAuthor.clear();
+        txtEditorial.clear();
+        txtYear.clear();
+        txtISBN.clear();
+        comboGender.getSelectionModel().clearSelection();
+        comboAvailable.getSelectionModel().clearSelection();
+    }
+
 
     @FXML //Este es para que se regrese al menu-view.fxml al picarle
-    private void Cancel(){
+    private void Cancel() throws IOException{
+        FXMLLoader loader =  new FXMLLoader(getClass().getResource("/com/example/bibliotecaescolar/views/menu-view.fxml"));
+        Parent root = loader.load();
 
+        Stage stage = (Stage) txtYear.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

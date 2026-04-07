@@ -58,6 +58,15 @@ public class Book {
     public void setGender(String gender) { this.gender.set(gender); }
     public StringProperty genderProperty() { return gender; }
 
+    public String toCsvLine(){
+        return String.join(",",String.valueOf(getId()),getISBN(),getauthor(),getAnio(),getTitle(),getEditorial(),getAvailable(),getGender());
+    }
+
+    public static Book fromCsvLine(String line){
+        String[] b = line.split(",",-1);
+        if(b.length<8) throw new IllegalArgumentException("Linea invalida");
+        return new Book(b[1].trim(),b[2].trim(),b[3].trim(),b[4].trim(),b[5].trim(),b[6].trim(),b[7].trim());
+    }
 
 
 }
