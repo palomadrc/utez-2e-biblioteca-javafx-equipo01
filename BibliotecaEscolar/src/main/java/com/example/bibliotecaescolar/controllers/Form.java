@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -74,17 +73,9 @@ public class Form {
             }
             return true;
         }catch (IllegalArgumentException e){
-            showMenssage(e);
+            Main.showMenssage(e);
             return false;
         }
-    }
-
-    private void showMenssage(IllegalArgumentException e){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("alerta");
-        alert.setHeaderText("Ocurrió un error");
-        alert.setContentText(e.getMessage());
-        alert.showAndWait();
     }
 
     public void clear(){

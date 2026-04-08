@@ -65,7 +65,9 @@ public class Book {
     public static Book fromCsvLine(String line){
         String[] b = line.split(",",-1);
         if(b.length<8) throw new IllegalArgumentException("Linea invalida");
-        return new Book(b[1].trim(),b[2].trim(),b[3].trim(),b[4].trim(),b[5].trim(),b[6].trim(),b[7].trim());
+        Book book = new Book(b[1], b[2], b[3], b[4], b[5], b[6], b[7]);
+        book.id.set(Integer.parseInt(b[0]));
+        return book;
     }
 
 
