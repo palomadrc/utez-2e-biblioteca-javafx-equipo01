@@ -19,7 +19,7 @@
       <TextField fx:id="txtYear" layoutX="237.0" layoutY="126.0" />
       <TextField fx:id="txtISBN" layoutX="237.0" layoutY="167.0" />
       <Button layoutX="14.0" layoutY="306.0" mnemonicParsing="false" onAction="#Save" text="Save" />
-      <Button layoutX="138.0" layoutY="306.0" mnemonicParsing="false" onAction="#Cancel" text="Cancel" />
+      <Button layoutX="138.0" layoutY="306.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
       <Label layoutX="13.0" layoutY="200.0" text="Editorial" />
       <Label layoutX="13.0" layoutY="233.0" text="Gender" />
       <Label layoutX="13.0" layoutY="266.0" text="Available" />

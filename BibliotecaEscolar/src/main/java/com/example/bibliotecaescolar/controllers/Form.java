@@ -90,7 +90,7 @@ public class Form {
 
 
     @FXML //Este es para que se regrese al menu-view.fxml al picarle
-    private void Cancel() throws IOException{
+    private void cancel() throws IOException{
         FXMLLoader loader =  new FXMLLoader(getClass().getResource("/com/example/bibliotecaescolar/views/menu-view.fxml"));
         Parent root = loader.load();
 

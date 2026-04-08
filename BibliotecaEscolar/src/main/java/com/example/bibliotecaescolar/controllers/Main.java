@@ -7,11 +7,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -19,6 +18,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Main {
 
@@ -42,6 +42,7 @@ public class Main {
         configureColumns();
         loadData();
     }
+
 
     @FXML //Para ir al form
     private void goToForm(){
@@ -105,12 +106,53 @@ public class Main {
 
 
     @FXML
-    private void buscar(){
+    private void buscar()throws IOException{
+        String title =txtBuscar.getText();
+        List<Book> books = loadAll();
 
+        for (Book b:books){
+            if (b.getTitle().equals(title)){
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/bibliotecaescolar/views/details-view.fxml"));
+                    Parent root =  fxmlLoader.load();
+                    Details details = fxmlLoader.getController();
+                    details.initData(b);
+                    Stage stage = (Stage) TableView.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                    break;
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @FXML
     private void eliminar(){
+        Book selected = TableView.getSelectionModel().getSelectedItem();
+        if(selected == null){
+            showMenssage(new IllegalArgumentException("selecciona un libro"));
+            return;
+        }
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Estas seguro de esta accion??'");
+        confirmation.setHeaderText("Eliminar libro");
+        confirmation.setContentText("Seguro que quiers Eliminar");
+        Optional<ButtonType> result = confirmation.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            int index= books.indexOf(selected);
+            books.remove(index);
+            try {
+                List<String> lines = books.stream().map(Book::toCsvLine).toList();
+                repo.saveAll(lines);
+            } catch (IOException e) {
+                showMenssage(new IllegalArgumentException("Error al borrar"));
+            }
+
+        } else {
+
+        }
 
     }
 
