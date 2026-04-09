@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="37e5c104-7a9e-431b-84b0-bee11d18e437" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BibliotecaEscolar/src/main/resources/com/example/bibliotecaescolar/views/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BibliotecaEscolar/src/main/java/com/example/bibliotecaescolar/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BibliotecaEscolar/src/main/java/com/example/bibliotecaescolar/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BibliotecaEscolar/src/main/resources/com/example/bibliotecaescolar/views/details-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/BibliotecaEscolar/src/main/resources/com/example/bibliotecaescolar/views/details-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BibliotecaEscolar/src/main/resources/com/example/bibliotecaescolar/views/form-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/BibliotecaEscolar/src/main/resources/com/example/bibliotecaescolar/views/form-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BibliotecaEscolar/src/main/resources/com/example/bibliotecaescolar/views/menu-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/BibliotecaEscolar/src/main/resources/com/example/bibliotecaescolar/views/menu-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
