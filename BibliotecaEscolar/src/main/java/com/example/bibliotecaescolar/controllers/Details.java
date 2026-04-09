@@ -35,8 +35,6 @@ public class Details {
     @FXML private TextField txtGender;
 
     private Book book;
-    private boolean editActive=false;
-
 
     public void initData(Book book){
 

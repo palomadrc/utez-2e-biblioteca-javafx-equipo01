@@ -26,6 +26,16 @@ public class Book {
         this.available =new SimpleStringProperty(available);
         this.gender =new SimpleStringProperty(gender);
     }
+    private Book(int id, String ISBN, String author, String anio, String title, String editorial, String available, String gender) {
+        this.id = new SimpleIntegerProperty(id);
+        this.ISBN = new SimpleStringProperty(ISBN);
+        this.author = new SimpleStringProperty(author);
+        this.anio = new SimpleStringProperty(anio);
+        this.title = new SimpleStringProperty(title);
+        this.editorial = new SimpleStringProperty(editorial);
+        this.available = new SimpleStringProperty(available);
+        this.gender = new SimpleStringProperty(gender);
+    }
 
     public int getId() {return id.get();}
     public IntegerProperty idProperty() {return id;}
@@ -65,8 +75,11 @@ public class Book {
     public static Book fromCsvLine(String line){
         String[] b = line.split(",",-1);
         if(b.length<8) throw new IllegalArgumentException("Linea invalida");
-        Book book = new Book(b[1], b[2], b[3], b[4], b[5], b[6], b[7]);
-        book.id.set(Integer.parseInt(b[0]));
+        int nextIndex= Integer.parseInt(b[0]);
+        Book book = new Book(nextIndex,b[1], b[2], b[3], b[4], b[5], b[6], b[7]);
+
+        book.id.set(nextIndex);
+        if (nextIndex >= nextId) nextId = nextIndex + 1;
         return book;
     }
 

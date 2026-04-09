@@ -37,6 +37,8 @@ public class Form {
         txtYear.setText(book.getAnio());
         txtISBN.setText(book.getISBN());
         txtTitle.setText(book.getTitle());
+        comboGender.setValue(book.getGender());
+        comboAvailable.setValue(book.getAvailable());
 
         this.book=book;
     }
@@ -52,7 +54,7 @@ public class Form {
 
            repo.appendLine(book.toCsvLine());
            clear();
-           Main.showMenssage(new IllegalArgumentException("Creado con exito"));
+           Main.showSuccess("Creado con exitooo");
        }
        else {
            book.setISBN(data.get(0));
@@ -63,7 +65,8 @@ public class Form {
            book.setAvailable(available);
            book.setGender(gender);
            repo.update(book);
-           Main.showMenssage(new IllegalArgumentException("Actualizado con exito"));
+           clear();
+           Main.showSuccess("Modificado con exito");
 
        }
 
@@ -107,6 +110,7 @@ public class Form {
         txtISBN.clear();
         comboGender.getSelectionModel().clearSelection();
         comboAvailable.getSelectionModel().clearSelection();
+        book=null;
     }
 
 

@@ -40,7 +40,6 @@ public class Main {
     private final ObservableList<Book> books = FXCollections.observableArrayList();
 
     private final BookRepo repo = new BookRepo();
-    private Form form= new Form();
 
     @FXML
     private void initialize(){
@@ -135,6 +134,11 @@ public class Main {
             showMenssage(new IllegalArgumentException("error al cargar los libros"));
         }
     }
+    public static void showSuccess(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
 
     public static void showMenssage(IllegalArgumentException e){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -148,6 +152,7 @@ public class Main {
     @FXML
     private void buscar()throws IOException{
         try {
+            Book found= null;
             int searchId = Integer.parseInt(txtBuscar.getText());
 
             List<Book> books = loadAll();
@@ -162,14 +167,16 @@ public class Main {
                         Stage stage = (Stage) TableView.getScene().getWindow();
                         stage.setScene(new Scene(root));
                         stage.show();
+                        found=b;
                         break;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-                else {
-                    txtBuscar.setText("id no encontrado");
-                }
+            }
+            if(found==null){
+                showSuccess("Libro no encontrado");
+
             }
         }catch (NumberFormatException e){
             txtBuscar.setText("introduce digitos numericos");
