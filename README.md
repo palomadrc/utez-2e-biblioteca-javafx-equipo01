@@ -72,7 +72,19 @@ El sistema ofrece funcionalidades para **crear, editar, eliminar, buscar y visua
 - `form-view.fxml`: formulario de creación/edición.
 - `details-view.fxml`: vista de detalles.
 
+—
+
+
+##  Pasos de Ejecución
+
+1. Clonar el repositorio en Git 
+2. Abrir IntelliJ IDEA..
+3. Importar el proyecto con File → Open... y seleccionar la carpeta del repositorio. .
+4. Configurar el SDK en File → Project Structure → Project SDK(21)
+5. Abrir el archivo HelloApplication y ejecutar desde ahí. 
+
 ---
+
 
 ##  Ejemplo de uso
 
@@ -81,6 +93,13 @@ El sistema ofrece funcionalidades para **crear, editar, eliminar, buscar y visua
 3. Ingresar los datos del libro y guardar.
 4. El libro aparecerá en la tabla principal.
 5. Se puede buscar por ID, editar o eliminar.
-6. Generar un reporte en `Downloads/report_fecha.txt`.
+6. Generar un reporte en que se vé directamente es tus descargados en archivos.
 
 ---
+
+##  Integrantes
+
+-Paloma Del Río Cordero
+-Alejandro Campos Taboada
+---
+
