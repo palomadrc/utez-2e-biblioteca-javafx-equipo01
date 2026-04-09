@@ -16,6 +16,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -58,6 +63,41 @@ public class Main {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void generateReport()throws IOException {
+        try {
+            String date = java.time.LocalDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+            List<Book> books = loadAll();
+
+            StringBuilder format = new StringBuilder();
+
+            format.append("======================Reporte de libros======================\n\n");
+
+            for (Book b : books) {
+                format.append("ID:    ").append(b.getId()).append("\n");
+                format.append("Title:    ").append(b.getTitle()).append("\n");
+                format.append("Year:     ").append(b.getAnio()).append("\n");
+                format.append("Author:    ").append(b.getauthor()).append("\n");
+                format.append("ISBN:    ").append(b.getISBN()).append("\n");
+                format.append("Editorial:    ").append(b.getEditorial()).append("\n");
+                format.append("Gender:    ").append(b.getGender()).append("\n");
+                format.append("Available:    ").append(b.getAvailable()).append("\n");
+
+                format.append("========================================================\n");
+
+            }
+
+            Path reportPath = Paths.get(
+                    System.getProperty("user.home"), "Downloads", "report"+date+".txt"
+            );
+
+            Files.writeString(reportPath, format.toString(), StandardCharsets.UTF_8, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+        } catch (Exception e) {
+            showMenssage(new IllegalArgumentException("error al generar archivos"));
+        }
+
     }
 
     public void configureColumns(){
@@ -107,24 +147,32 @@ public class Main {
 
     @FXML
     private void buscar()throws IOException{
-        String title =txtBuscar.getText();
-        List<Book> books = loadAll();
+        try {
+            int searchId = Integer.parseInt(txtBuscar.getText());
 
-        for (Book b:books){
-            if (b.getTitle().equals(title)){
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/bibliotecaescolar/views/details-view.fxml"));
-                    Parent root =  fxmlLoader.load();
-                    Details details = fxmlLoader.getController();
-                    details.initData(b);
-                    Stage stage = (Stage) TableView.getScene().getWindow();
-                    stage.setScene(new Scene(root));
-                    stage.show();
-                    break;
-                }catch (Exception e) {
-                    e.printStackTrace();
+            List<Book> books = loadAll();
+
+            for (Book b : books) {
+                if (b.getId() == searchId) {
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/example/bibliotecaescolar/views/details-view.fxml"));
+                        Parent root = fxmlLoader.load();
+                        Details details = fxmlLoader.getController();
+                        details.initData(b);
+                        Stage stage = (Stage) TableView.getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                        break;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    txtBuscar.setText("id no encontrado");
                 }
             }
+        }catch (NumberFormatException e){
+            txtBuscar.setText("introduce digitos numericos");
         }
     }
 
@@ -155,16 +203,5 @@ public class Main {
         }
 
     }
-
-    @FXML
-    private void update(){
-
-    }
-
-    @FXML //este tiene que regresar al form-view
-    private void editar(){
-
-    }
-
 
 }

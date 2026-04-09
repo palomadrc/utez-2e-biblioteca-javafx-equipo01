@@ -1,5 +1,7 @@
 package com.example.bibliotecaescolar.repository;
 
+import com.example.bibliotecaescolar.model.Book;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
@@ -33,6 +35,28 @@ public class BookRepo {
         ensureFile();
         Files.write(filePath, lines, StandardCharsets.UTF_8,
                 StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+    public void update(Book book)throws IOException{
+        List<String> lines = readAllLines();
+
+        List<String> updates= lines.stream().map(line ->{
+            try {
+                Book b = Book.fromCsvLine(line);
+                if(b.getId()==book.getId()){
+                    return book.toCsvLine();
+                }else {
+                    return line;
+                }
+
+            }catch(Exception e){
+                return line;
+            }
+
+        }).toList();
+
+        saveAll(updates);
+
+
     }
 
 }

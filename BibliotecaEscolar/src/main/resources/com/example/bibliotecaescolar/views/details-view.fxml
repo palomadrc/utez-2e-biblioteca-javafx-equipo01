@@ -32,8 +32,6 @@
             <Label text="Author" GridPane.rowIndex="3" />
             <Label text="Year" GridPane.rowIndex="4" />
             <Label text="Editorial" GridPane.rowIndex="5" />
-            <Label text="Gender" GridPane.rowIndex="6" />
-            <Label text="Available" GridPane.rowIndex="7" />
             <Label fx:id="lblISBN" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="lblTitle" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="lblAuthor" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -46,10 +44,12 @@
             <TextField fx:id="txtAuthor" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txtYear" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="txtEditorial" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="txtGender" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="txtAvailable" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Label text="ID" />
             <TextField fx:id="txtID" GridPane.columnIndex="1" />
+            <Label prefHeight="17.0" prefWidth="58.0" text="Available" GridPane.rowIndex="6" />
+            <Label text="Gender" GridPane.rowIndex="7" />
+            <TextField fx:id="txtAvailable" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="txtGender" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          </children>
       </GridPane>
       <Label layoutX="37.0" layoutY="19.0" text="DETAILS ABOUT THE BOOK">
@@ -58,6 +58,6 @@
          </font>
       </Label>
       <Button layoutX="46.0" layoutY="367.0" mnemonicParsing="false" onAction="#cancel" text="Go Back" />
-      <Button layoutX="120.0" layoutY="367.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="btnEdit" layoutX="120.0" layoutY="367.0" mnemonicParsing="false" text="edit" />
    </children>
 </AnchorPane>
