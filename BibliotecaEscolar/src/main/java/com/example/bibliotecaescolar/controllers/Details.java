@@ -36,6 +36,7 @@ public class Details {
 
     private Book book;
 
+    // Función para recibir los datos del libro con coincidencia ID
     public void initData(Book book){
 
         this.book=book;

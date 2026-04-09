@@ -41,6 +41,8 @@ public class Main {
 
     private final BookRepo repo = new BookRepo();
 
+
+    //LLamada a datos y configuracion de la tabla
     @FXML
     private void initialize(){
         configureColumns();

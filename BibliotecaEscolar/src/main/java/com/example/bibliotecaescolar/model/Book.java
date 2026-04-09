@@ -72,6 +72,7 @@ public class Book {
         return String.join(",",String.valueOf(getId()),getISBN(),getauthor(),getAnio(),getTitle(),getEditorial(),getAvailable(),getGender());
     }
 
+
     public static Book fromCsvLine(String line){
         String[] b = line.split(",",-1);
         if(b.length<8) throw new IllegalArgumentException("Linea invalida");

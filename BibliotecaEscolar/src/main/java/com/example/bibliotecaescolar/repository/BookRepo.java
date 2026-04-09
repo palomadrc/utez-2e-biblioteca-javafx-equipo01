@@ -11,6 +11,7 @@ public class BookRepo {
 
     private final Path filePath = Paths.get("Data","books.csv");
 
+    //Validacion si existe carpeta y archivo
     private void ensureFile() throws IOException {
         if (Files.notExists(filePath.getParent())) {
             Files.createDirectories(filePath.getParent());
@@ -25,6 +26,7 @@ public class BookRepo {
         return Files.readAllLines(filePath, StandardCharsets.UTF_8);
     }
 
+    //Añadir linea
     public void appendLine(String line) throws IOException {
         ensureFile();
         Files.writeString(filePath, line + System.lineSeparator(),

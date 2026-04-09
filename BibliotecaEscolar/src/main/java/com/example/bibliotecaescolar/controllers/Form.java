@@ -26,11 +26,14 @@ public class Form {
 
     private BookRepo repo = new BookRepo();
     private Book book;
+
+    //Función incializadora para añadir
     public void initialize(){
         comboGender.getItems().addAll("Drama", "Romace", "History", "CiFi", "Literature", "Science", "Fantacy", "Horror");
         comboAvailable.getItems().addAll("Yes", "No");
     }
 
+    //Funcion para recibir libro y modificarlo
     public void initdata(Book book){
         txtAuthor.setText(book.getauthor());
         txtEditorial.setText(book.getEditorial());
@@ -72,6 +75,7 @@ public class Form {
 
     }
 
+    //Validar que todos los campos sean ingresados correctamente
     private boolean validate(){
         try {
             boolean fieldVoid = List.of(txtTitle, txtAuthor, txtEditorial,txtYear,txtISBN).stream().anyMatch(f -> f.getText().trim().isEmpty());
