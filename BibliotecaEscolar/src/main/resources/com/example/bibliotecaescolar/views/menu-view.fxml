@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="366.0" prefWidth="600.0" styleClass="root" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotecaescolar.controllers.Main">
+   <children>
+      <TableView fx:id="TableView" layoutY="103.0" prefHeight="265.0" prefWidth="600.0" styleClass="tabla-moderna" stylesheets="@style.css">
+        <columns>
+          <TableColumn fx:id="colID" prefWidth="62.0" text="ID" />
+          <TableColumn fx:id="colTitle" prefWidth="199.0" text="Title" />
+            <TableColumn fx:id="colAuthor" prefWidth="99.0" text="Author" />
+            <TableColumn fx:id="colYear" minWidth="0.0" prefWidth="71.0" text="Year" />
+            <TableColumn fx:id="colGender" prefWidth="101.0" text="Gender" />
+            <TableColumn fx:id="colAvailable" prefWidth="67.0" text="Available" />
+        </columns>
+      </TableView>
+      <Label layoutX="14.0" layoutY="70.0" text="Search :  ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <TextField fx:id="txtBuscar" layoutX="65.0" layoutY="66.0" promptText="-Write id here-" />
+      <Button layoutX="236.0" layoutY="66.0" mnemonicParsing="false" onAction="#buscar" styleClass="button-secondary" text="Details" />
+      <Button layoutX="473.0" layoutY="66.0" mnemonicParsing="false" onAction="#goToForm" styleClass="button-primary" text="Add" />
+      <Button fx:id="btnG" layoutX="460.0" layoutY="14.0" mnemonicParsing="false" onAction="#generateReport" prefHeight="32.0" prefWidth="116.0" styleClass="button-primary" text="Generate Report" />
+      <Label fx:id="lblStatus" layoutX="19.0" layoutY="368.0" prefHeight="17.0" prefWidth="46.0" />
+      <Button layoutX="518.0" layoutY="66.0" mnemonicParsing="false" onAction="#eliminar" styleClass="button-danger" text="Delete" />
+      <Label layoutX="19.0" layoutY="14.0" text="ARCHIVE OF OUR BOOKS">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

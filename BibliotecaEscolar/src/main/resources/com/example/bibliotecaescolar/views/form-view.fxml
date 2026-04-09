@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="button-combobox" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotecaescolar.controllers.Form">
+   <children>
+      <Label layoutX="15.0" layoutY="59.0" text="Title" />
+      <Label layoutX="16.0" layoutY="94.0" text="Author" />
+      <Label layoutX="15.0" layoutY="130.0" text="Year" />
+      <Label layoutX="14.0" layoutY="171.0" text="ISBN" />
+      <TextField fx:id="txtTitle" layoutX="237.0" layoutY="55.0" promptText="-Write here-" />
+      <TextField fx:id="txtAuthor" layoutX="237.0" layoutY="90.0" promptText="-Write here-" />
+      <TextField fx:id="txtYear" layoutX="237.0" layoutY="126.0" promptText="-Write here-" />
+      <TextField fx:id="txtISBN" layoutX="237.0" layoutY="167.0" promptText="-Write here-" />
+      <Button layoutX="14.0" layoutY="306.0" mnemonicParsing="false" onAction="#Save" styleClass="button-primary" text="Save" />
+      <Button layoutX="138.0" layoutY="306.0" mnemonicParsing="false" onAction="#cancel" styleClass="button-danger" text="Cancel" />
+      <Label layoutX="13.0" layoutY="200.0" text="Editorial" />
+      <Label layoutX="13.0" layoutY="233.0" text="Gender" />
+      <Label layoutX="13.0" layoutY="266.0" text="Available" />
+      <ComboBox fx:id="comboGender" layoutX="237.0" layoutY="238.0" prefWidth="150.0" promptText="-Select one-" styleClass="button-combobox" />
+      <ComboBox fx:id="comboAvailable" layoutX="237.0" layoutY="271.0" prefWidth="150.0" promptText="-Select one-" styleClass="button-combobox" />
+      <TextField fx:id="txtEditorial" layoutX="238.0" layoutY="205.0" promptText="-Write here-" />
+      <Label layoutX="13.0" layoutY="6.0" text="WELCOME TO OUR LIBRARY">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <Label layoutX="16.0" layoutY="31.0" text="Pleas fill all the boxes bellow to add a new book :)" />
+   </children>
+</AnchorPane>
